@@ -8,8 +8,8 @@ fun main() {
         val input = readln().toInt()
         if (input == 1) {
             print("Введите сумму перевода в рублях, чтобы узнать размер комиссии: ")
-            val transferAmount = transferAmount()
-            val commissionsAmount = commissionAmount(transferAmount)
+            val transferAmount = getTransferAmount()
+            val commissionsAmount = calculateCommissionAmount(transferAmount)
             if (transferAmount < 100) println("Меньше 100 рублей перевести невозможно!")
             else println("При переводе $transferAmount р., комиссия составит $commissionsAmount р.\n")
         } else if (input == 0) break
@@ -19,7 +19,7 @@ fun main() {
     }
 }
 
-fun transferAmount(): Int {
+fun getTransferAmount(): Int {
 
     while (true) {
         var amount: Int
@@ -34,7 +34,7 @@ fun transferAmount(): Int {
 
 }
 
-fun commissionAmount(transferAmount: Int): Number {
+fun calculateCommissionAmount(transferAmount: Int): Number {
     val amount = transferAmount / 100 * 0.75
     val minimalAmount = 35
     return if (amount > minimalAmount) amount else minimalAmount
